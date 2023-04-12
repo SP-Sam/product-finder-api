@@ -3,6 +3,7 @@ import cors, { CorsOptions } from "cors";
 
 import Logger from "../config/logger";
 import router from "./router";
+import morganMiddleware from "./middleware/morganMiddleware";
 
 const app = express();
 
@@ -19,6 +20,8 @@ const corsOptions: CorsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
+app.use(morganMiddleware);
 
 app.use("/api", router);
 
