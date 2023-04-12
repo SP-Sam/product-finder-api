@@ -7,16 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Search {
+  id        Int       @id @default(autoincrement())
+  search    String
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
 model Product {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   description String
   category    String
   price       Float
   imageUrl    String
   website     String
-}
-
-model Search {
-  id     Int    @id @default(autoincrement())
-  search String
+  Search      Search   @relation(fields: [searchId], references: [id])
+  searchId    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
