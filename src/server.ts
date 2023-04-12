@@ -3,7 +3,9 @@ import cors, { CorsOptions } from "cors";
 
 import Logger from "../config/logger";
 import router from "./router";
+
 import morganMiddleware from "./middleware/morganMiddleware";
+import { validate } from "./middleware/handleValidation";
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.use(express.json());
 
 app.use(morganMiddleware);
 
-app.use("/api", router);
+app.use("/api", validate, router);
 
 app.listen(PORT, () => {
   Logger.info(`Server running on port ${PORT}`);

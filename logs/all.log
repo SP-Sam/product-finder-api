@@ -4,3 +4,16 @@
 2023-04-12 09:45:34 - [32minfo[39m: [32mServer running on port 3000[39m
 2023-04-12 09:45:38 - [35mhttp[39m: [35mGET /api/health-check 200 25 - 1.243 ms[39m
 [35m[39m
+2023-04-12 09:50:50 - [32minfo[39m: [32mServer running on port 3000[39m
+2023-04-12 09:50:59 - [35mhttp[39m: [35mGET /api/health-check 200 25 - 2.317 ms[39m
+[35m[39m
+2023-04-12 09:51:04 - [35mhttp[39m: [35mGET /api/health-check 200 25 - 0.651 ms[39m
+[35m[39m
+2023-04-12 09:51:25 - [32minfo[39m: [32mServer running on port 3000[39m
+2023-04-12 09:51:28 - [35mhttp[39m: [35mGET /api/health-check 200 25 - 1.699 ms[39m
+[35m[39m
+2023-04-12 09:51:32 - [32minfo[39m: [32mServer running on port 3000[39m
+2023-04-12 09:51:50 - [35mhttp[39m: [35mGET /api/health-checkk 404 156 - 2.528 ms[39m
+[35m[39m
+2023-04-12 09:51:56 - [35mhttp[39m: [35mGET /api/health-check 200 25 - 1.366 ms[39m
+[35m[39m
