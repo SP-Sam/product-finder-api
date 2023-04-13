@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config ./dist/src/server.js",
     "dev": "tsx watch -r dotenv/config src/server.ts",
-    "build": "npx prisma migrate deploy && tsc",
+    "build": "npx prisma migrate deploy && npx prisma generate && tsc",
     "test": "vitest"
   },
   "keywords": [],
