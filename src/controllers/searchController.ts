@@ -49,7 +49,7 @@ export const searchByTerm = async (req: Request, res: Response) => {
     const body: ISearchByTerm = req.body;
 
     const foundedSearch = await prismaClient.search.findUnique({
-      where: { search: `${body.searchTerm}` },
+      where: { search: `${body.website} ${body.searchTerm}` },
     });
 
     if (foundedSearch !== null) {
@@ -64,7 +64,7 @@ export const searchByTerm = async (req: Request, res: Response) => {
       const products = await getProductsBySearchTerm(body);
 
       const search = await prismaClient.search.create({
-        data: { search: `${body.searchTerm}` },
+        data: { search: `${body.website} ${body.searchTerm}` },
       });
 
       const productList = products.map((product) => ({

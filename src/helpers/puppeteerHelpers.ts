@@ -40,9 +40,10 @@ const scrapingMercadoLivre = async (url: string) => {
         ).textContent,
         imageUrl: productCard
           .querySelector(
-            "div.ui-search-result__image a div div div div div.slick-slide img"
+            "div.ui-search-result__image a div.slick-track div.slick-active img.ui-search-result-image__element"
           )
-          .getAttribute("src"),
+          .getAttribute("src")
+          .toString(),
         price: productCard.querySelector(
           "div.ui-search-result__content-wrapper div.ui-search-result__content-columns div div div div div span span.price-tag-amount"
         ).textContent,
@@ -115,13 +116,65 @@ const scrapingMercadoLivre = async (url: string) => {
   return products;
 };
 
+const scrapingBuscape = async (url: string) => {
+  const browser = await puppeteer.launch({
+    executablePath:
+      process.env.ENVIRONMENT === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
+    headless: true,
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    ignoreHTTPSErrors: true,
+  });
+
+  const page = await browser.newPage();
+  await page.goto(url);
+
+  const products = await page.evaluate(() => {
+    const productCards: IProduct[] = [
+      ...document.querySelectorAll("div.SearchCard_ProductCard__1D3ve"),
+    ].map((productCard) => {
+      const productInfos = {
+        description: productCard.querySelector(
+          "a div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Description__fGXI3 div.SearchCard_ProductCard_NameWrapper__Gv0x_ div h2"
+        ).textContent,
+        imageUrl: productCard
+          .querySelector(
+            "div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Image__ffKkn span img"
+          )
+          .getAttribute("src"),
+        price: productCard.querySelector(
+          "a div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Description__fGXI3 div>p.Text_Text__h_AF6"
+        ).textContent,
+        website: `https://www.buscape.com.br${productCard
+          .querySelector("a")
+          .getAttribute("href")}`,
+        category: document.querySelector("h1").textContent,
+      };
+
+      return productInfos;
+    });
+
+    return productCards;
+  });
+
+  await browser.close();
+
+  return products;
+};
+
 export const getProductsByCategory = async (search: ISearchByCategory) => {
   if (search.website === "Mercado Livre") {
     return scrapingMercadoLivre(MercadoLivreCategoryLinks[search.category]);
   }
 
   if (search.website === "Buscapé") {
-    console.log(BuscapeCategoryLinks[search.category]);
+    return scrapingBuscape(BuscapeCategoryLinks[search.category]);
   }
 };
 
@@ -129,6 +182,11 @@ export const getProductsBySearchTerm = async (search: ISearchByTerm) => {
   if (search.website === "Mercado Livre") {
     return scrapingMercadoLivre(
       `https://lista.mercadolivre.com.br/${search.searchTerm}`
+    );
+  }
+  if (search.website === "Buscapé") {
+    return scrapingBuscape(
+      `https://www.buscape.com.br/search?q=${search.searchTerm}`
     );
   }
 };
