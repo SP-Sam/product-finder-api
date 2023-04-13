@@ -12,5 +12,5 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
-CMC ["npm", "run", "dev"]
+CMD ["npm", "run", "dev"]
 # CMD ["node", "-r", "dotenv/config", "./dist/src/server.js"]
