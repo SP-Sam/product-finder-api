@@ -8,4 +8,4 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-CMD ["node",  "-r",  "dotenv/config", "./dist/src/server.js"]
+CMD ["node", "-r", "dotenv/config", "./dist/src/server.js"]
