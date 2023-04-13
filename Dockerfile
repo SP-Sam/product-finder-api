@@ -6,7 +6,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     ENVIRONMENT=production \
     DATABASE_URL=postgresql://postgres:F%21oJ%23R05FhaG%21rYM@db.casrubdwslrdkmfdpnsz.supabase.co:5432/postgres
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm ci
