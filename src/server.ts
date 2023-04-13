@@ -27,6 +27,6 @@ app.use(morganMiddleware);
 
 app.use("/api", validate, router);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   Logger.info(`Server running on port ${PORT}`);
 });
