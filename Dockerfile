@@ -1,16 +1,8 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-RUN apk add --no-cache \
-      chromium \
-      nss \
-      freetype \
-      harfbuzz \
-      ca-certificates \
-      ttf-freefont \
-      nodejs \
-      yarn
+RUN apk add --no-cache udev ttf-freefont chromium git
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
@@ -18,19 +10,14 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     ENVIRONMENT=production \
     DATABASE_URL=postgresql://postgres:sPeg1UkamAzgmUB1@db.frnlqmpdcmiuetfnhbwi.supabase.co:5432/postgres
 
-RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
-    && mkdir -p /home/pptruser/Downloads /app \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
-
-COPY . /app
+COPY package*.json ./
 
 RUN npm install
 
-RUN npm run build
+COPY . ./
 
 EXPOSE 3000
 
-USER pptruser
+RUN npm run build
 
 CMD ["npm", "start"]

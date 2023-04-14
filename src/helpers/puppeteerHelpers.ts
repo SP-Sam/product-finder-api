@@ -16,12 +16,7 @@ const scrapingMercadoLivre = async (url: string) => {
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
     headless: true,
-    args: [
-      "--disable-setuid-sandbox",
-      "--no-sandbox",
-      "--single-process",
-      "--no-zygote",
-    ],
+    args: ["--no-sandbox"],
     ignoreHTTPSErrors: true,
   });
 
