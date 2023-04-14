@@ -14,6 +14,7 @@ RUN apk update && apk add --no-cache nmap && \
       nss
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
     PORT=3000 \
     ENVIRONMENT=production \
     DATABASE_URL=postgresql://postgres:sPeg1UkamAzgmUB1@db.frnlqmpdcmiuetfnhbwi.supabase.co:5432/postgres
