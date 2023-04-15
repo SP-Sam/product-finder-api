@@ -6,7 +6,7 @@ const stream: StreamOptions = {
 };
 
 const skip = () => {
-  const env = process.env.ENVIRONMENT || "development";
+  const env = process.env.NODE_ENV || "development";
 
   return env !== "development";
 };
