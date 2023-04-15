@@ -14,7 +14,7 @@ router.get("/health-check", (_req: Request, res: Response) => {
   return res.json({ message: "API Working" });
 });
 
-router.post("/search", searchValidation(), validate, searchByTerm);
+router.post("/search", searchByTerm);
 
 router.post(
   "/product-category",
