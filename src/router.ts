@@ -1,5 +1,9 @@
 import { Router, Request, Response } from "express";
-import { searchByCategory, searchByTerm } from "./controllers/searchController";
+import {
+  search,
+  searchByCategory,
+  searchByTerm,
+} from "./controllers/searchController";
 
 import { searchValidation } from "./middleware/searchValidation";
 import { validate } from "./middleware/handleValidation";
@@ -18,5 +22,7 @@ router.post(
   validate,
   searchByCategory
 );
+
+router.post("/teste", search);
 
 export default router;
