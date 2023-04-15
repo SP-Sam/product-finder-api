@@ -80,13 +80,3 @@ export const searchByTerm = async (req: Request, res: Response) => {
     Logger.error(e.message);
   }
 };
-
-export const search = async (req: Request, res: Response) => {
-  try {
-    const body: ISearchByTerm = req.body;
-
-    return res.status(200).json(body);
-  } catch (e: any) {
-    Logger.error(e.message);
-  }
-};
