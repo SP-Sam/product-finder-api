@@ -9,10 +9,11 @@ import {
   BuscapeCategoryLinks,
   MercadoLivreCategoryLinks,
 } from "../enums/enums";
+import axios from "axios";
 
 const scrapingMercadoLivre = async (url: string) => {
-  const response = await fetch(url);
-  const html = await response.text();
+  const response = await axios.get(url);
+  const html = await response.data;
 
   const dom = new JSDOM(html);
   const document = dom.window.document;
@@ -98,8 +99,8 @@ const scrapingMercadoLivre = async (url: string) => {
 };
 
 const scrapingBuscape = async (url: string) => {
-  const response = await fetch(url);
-  const html = await response.text();
+  const response = await axios.get(url);
+  const html = await response.data;
 
   const dom = new JSDOM(html);
   const document = dom.window.document;
