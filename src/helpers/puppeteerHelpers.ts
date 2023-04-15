@@ -12,7 +12,7 @@ import {
 const scrapingMercadoLivre = async (url: string) => {
   const browser = await puppeteer.launch({
     executablePath:
-      process.env.ENVIRONMENT === "production"
+      process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
     headless: true,
@@ -114,7 +114,7 @@ const scrapingMercadoLivre = async (url: string) => {
 const scrapingBuscape = async (url: string) => {
   const browser = await puppeteer.launch({
     executablePath:
-      process.env.ENVIRONMENT === "production"
+      process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
     headless: true,
