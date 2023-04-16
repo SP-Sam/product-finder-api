@@ -120,9 +120,13 @@ const scrapingBuscape = async (url: string) => {
       price: productCard.querySelector(
         "a div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Description__fGXI3 div>p.Text_Text__h_AF6"
       ).textContent,
-      website: `https://www.buscape.com.br${productCard
-        .querySelector("a")
-        .getAttribute("href")}`,
+      website: productCard.querySelector(
+        ".SearchCard_ProductCard_Sponsored___FAyD"
+      )
+        ? productCard.querySelector("a").getAttribute("href")
+        : `https://www.buscape.com.br${productCard
+            .querySelector("a")
+            .getAttribute("href")}`,
       category: document.querySelector("h1").textContent,
     };
 
