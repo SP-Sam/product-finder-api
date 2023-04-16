@@ -4,7 +4,7 @@ import { ISearchByCategory, ISearchByTerm } from "../interfaces/interfaces";
 import {
   getProductsByCategory,
   getProductsBySearchTerm,
-} from "../helpers/puppeteerHelpers";
+} from "../helpers/scrapingHelpers";
 import { prismaClient } from "../database/prismaClient";
 
 export const searchByCategory = async (req: Request, res: Response) => {

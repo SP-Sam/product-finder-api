@@ -15,12 +15,12 @@ const scrapingMercadoLivre = async (url: string) => {
   const response = await axios.get(url);
   const html = await response.data;
 
-  const dom = new JSDOM(html);
+  const dom = new JSDOM(html, { includeNodeLocations: true });
   const document = dom.window.document;
 
   const productCards: IProduct[] = [
     ...document.querySelectorAll(
-      "ol.ui-search-layout ui-search-layout--stack li.ui-search-layout__item div.ui-search-result__wrapper div.ui-search-result"
+      "ol.ui-search-layout--stack li.ui-search-layout__item div.ui-search-result__wrapper div.ui-search-result"
     ),
   ].map((productCard) => {
     const productInfos = {
@@ -51,7 +51,7 @@ const scrapingMercadoLivre = async (url: string) => {
     return productInfos;
   });
 
-  if (productCards.length) {
+  if (productCards.length > 0) {
     return productCards;
   } else {
     const productCardsGrid = [
@@ -114,7 +114,7 @@ const scrapingBuscape = async (url: string) => {
       ).textContent,
       imageUrl: productCard
         .querySelector(
-          "div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Image__ffKkn span img"
+          "a div.SearchCard_ProductCard_Body__2wM_H div.SearchCard_ProductCard_Image__ffKkn span img"
         )
         .getAttribute("src"),
       price: productCard.querySelector(
