@@ -112,5 +112,5 @@ Além do endpoint de health check temos mais 2:
 
 Este projeto é um desafio técnico para um processo seletivo da empresa [Lextart](https://lexartlabs.com/), portanto não possui fins lucrativos e não está licenciado.
 
-[⬆️ Voltar ao topo](#product-finder)
+[⬆️ Voltar ao topo](#product-finder-api)
 <br>
