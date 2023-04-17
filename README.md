@@ -96,7 +96,7 @@ Além do endpoint de health check temos mais 2:
   ```bash
   {
     "website": "Mercado Livre" ou "Buscapé",
-    "searchTerm": "Galaxy S22 Ultra"
+    "searchTerm": "search term"
   }
   ```
 
