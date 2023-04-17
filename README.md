@@ -43,8 +43,6 @@ cd product-finder-api
 
 ### Na raiz do projeto existe um arquivo `.env.exemple.` renomeie este arquivo para `.env`
 
-<img src="./assets/env-exemple.png" alt="Terminal build">
-
 ### Abra o arquivo com um editor de texto e preencha as variáveis com o seguintes valores
 
 `PORT=3000`
