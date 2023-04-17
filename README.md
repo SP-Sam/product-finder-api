@@ -90,7 +90,7 @@ Além do endpoint de health check temos mais 2:
   }
   ```
 
-  `POST /api/search`
+`POST /api/search`
 
 - Este endpoint espera o seguinte formato de body
   ```bash
